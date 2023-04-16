@@ -1,33 +1,58 @@
 "use strict";
-// // Import stylesheets
-// import './style.css';
-// const form: HTMLFormElement = document.querySelector('#defineform')!;
+// // // Import stylesheets
+// // import './style.css';
+// // get form data
+// const form : HTMLFormElement = document.querySelector('#defineform')!;
 // form.onsubmit = () => {
-//   const formData = new FormData(form);
-//   console.log(formData);
-//   const text = formData.get('defineword') as string;
-//   console.log(text);
+//   const formData = new FormData(form); // form data
+//   const text = formData.get('defineword') as string; // get user input
+//   const defLists : HTMLUListElement = document.querySelector(".list-unstyled")!;
+//   const p = document.createElement("li");
+//   // create a new heading element
+//   const heading = document.createElement("h2");
+//   heading.textContent = text; // set the heading text to the input word
+//   defLists?.insertAdjacentElement("beforebegin", heading); // add the heading to the page
+//   // API call 
+//   fetch("https://api.dictionaryapi.dev/api/v2/entries/en/"+text)
+//   // cast response to json
+//   .then((Response) => Response.json())
+//   // get data from API and add definitions to web page
+//   .then((data) => {
+//     console.log(data)
+//     for (let i = 0; i < data[0].meanings.length; i++) {
+//       const meaning = data[0].meanings[i].definitions[0].definition;
+//       const partOfSpeech = data[0].meanings[i].partOfSpeech;
+//       const listItem = document.createElement("li");
+//       listItem.innerHTML = `<strong>${partOfSpeech}</strong>: ${meaning}`;
+//       defLists?.appendChild(listItem);
+//     }
+//   });
 //   return false; // prevent reload
 // };
-// get form from element html for reference and preform manipulation
 const form = document.querySelector('#defineform');
 form.onsubmit = () => {
-    const formData = new FormData(form); // forma data from form
-    const text = formData.get('defineword'); // get the word user input
-    //for debugging
-    //console.log(formData);
-    //console.log(text);
+    const formData = new FormData(form); // form data
+    const text = formData.get('defineword'); // get user input
     const defLists = document.querySelector(".list-unstyled");
-    const p = document.createElement("li");
-    p.textContent = "Hello, World!";
-    defLists === null || defLists === void 0 ? void 0 : defLists.appendChild(p);
     // API call 
     fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + text)
-        // cast response to be in json format???
+        // cast response to json
         .then((Response) => Response.json())
-        // get the data from API call and adding definitions to the web page
-        .then((DataTransfer) => {
-        console.log(DataTransfer);
+        // get data from API and add definitions to web page
+        .then((data) => {
+        const heading = document.createElement("h2"); // create a new heading element
+        heading.textContent = text; // set the heading text to the input word
+        const definitionsList = document.createElement("ul"); // create a new list for the definitions
+        definitionsList.classList.add("list-unstyled"); // add the necessary class
+        for (let i = 0; i < data[0].meanings.length; i++) {
+            const meaning = data[0].meanings[i].definitions[0].definition;
+            const partOfSpeech = data[0].meanings[i].partOfSpeech;
+            const listItem = document.createElement("li");
+            listItem.innerHTML = `<strong>${partOfSpeech}</strong>: ${meaning}`;
+            definitionsList.appendChild(listItem); // add the definition to the list
+        }
+        defLists === null || defLists === void 0 ? void 0 : defLists.insertAdjacentElement("beforeend", heading); // add the heading to the page
+        defLists === null || defLists === void 0 ? void 0 : defLists.insertAdjacentElement("beforeend", definitionsList); // add the definitions to the page
     });
     return false; // prevent reload
 };
