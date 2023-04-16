@@ -114,6 +114,14 @@ body {
   }
   
   /* Making header and words visually distinct */
+  h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
   h2 {
     font-size: 36px;
     font-weight: bold;
@@ -123,8 +131,9 @@ body {
   
   .lead {
     font-size: 24px;
-    color: var(--secondary-color);
+    color: var(#555);
     margin-bottom: 50px;
+    text-align: center;
   }
   
   ul.list-unstyled li {
@@ -133,3 +142,27 @@ body {
     color: var(--dark-gray);
     
   }
+  .list-unstyled {
+    padding: 1em 0;
+  }
+
+  .list-unstyled li:hover {
+    background-color: #eee;
+  }
+
+  .list-unstyled li {
+    margin-bottom: 1em;
+  }
+  .list-unstyled li .phonetic {
+    font-size: 0.8em;
+    color: #666;
+    margin-right: 0.5em;
+  }
+  
+  .list-unstyled li .origin {
+    font-size: 0.8em;
+    color: #666;
+    margin-right: 0.5em;
+    font-style: italic;
+  }
+  

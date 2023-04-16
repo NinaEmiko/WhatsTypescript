@@ -7,7 +7,7 @@ form.onsubmit = () => {
     const text = formData.get('defineword');
     const defLists = document.querySelector(".list-unstyled");
     //API call 
-    fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + text)
+    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${text}`)
         //Cast response to json
         .then((Response) => Response.json())
         //Get data from API and add definitions to web page
@@ -21,14 +21,34 @@ form.onsubmit = () => {
         //Add necessary class
         definitionsList.classList.add("list-unstyled");
         //This is where the magic happens
-        for (let i = 0; i < data[0].meanings.length; i++) {
-            const meaning = data[0].meanings[i].definitions[0].definition;
-            const partOfSpeech = data[0].meanings[i].partOfSpeech;
+        data.forEach((entry) => {
+            var _a;
+            // Create a new list item for each entry
             const listItem = document.createElement("li");
-            listItem.innerHTML = `<strong>${partOfSpeech}</strong>: ${meaning}`;
-            //Add definition to list
+            // Add the phonetic pronunciation if it exists
+            if (entry.phonetics && ((_a = entry.phonetics[0]) === null || _a === void 0 ? void 0 : _a.text)) {
+                const phonetic = document.createElement("span");
+                phonetic.classList.add("phonetic");
+                phonetic.textContent = `/${entry.phonetics[0].text}/ `;
+                listItem.appendChild(phonetic);
+            }
+            // Add the origin if it exists
+            if (entry.origin) {
+                const origin = document.createElement("span");
+                origin.classList.add("origin");
+                origin.textContent = `(${entry.origin}) `;
+                listItem.appendChild(origin);
+            }
+            // Add the part of speech and definition(s)
+            const partOfSpeech = document.createElement("strong");
+            partOfSpeech.textContent = `${entry.meanings[0].partOfSpeech}: `;
+            listItem.appendChild(partOfSpeech);
+            const definitions = document.createElement("span");
+            definitions.innerHTML = `${entry.meanings.map((meaning) => meaning.definitions[0].definition).join("; ")}`;
+            listItem.appendChild(definitions);
+            // Add the list item to the definitions list
             definitionsList.appendChild(listItem);
-        }
+        });
         //Add heading to page
         defLists === null || defLists === void 0 ? void 0 : defLists.insertAdjacentElement("beforeend", heading);
         //Add definitions to page
