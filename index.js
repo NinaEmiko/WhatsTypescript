@@ -25,14 +25,14 @@ form.onsubmit = () => {
             var _a;
             // Create a new list item for each entry
             const listItem = document.createElement("li");
-            // Add the phonetic pronunciation if it exists
+            // Add phonetic pronunciation if it exists
             if (entry.phonetics && ((_a = entry.phonetics[0]) === null || _a === void 0 ? void 0 : _a.text)) {
                 const phonetic = document.createElement("span");
                 phonetic.classList.add("phonetic");
                 phonetic.textContent = `/${entry.phonetics[0].text}/ `;
                 listItem.appendChild(phonetic);
             }
-            // Add the origin if it exists
+            // Add origin if it exists
             if (entry.origin) {
                 const origin = document.createElement("span");
                 origin.classList.add("origin");

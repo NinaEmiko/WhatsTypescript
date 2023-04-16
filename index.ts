@@ -35,7 +35,7 @@ form.onsubmit = () => {
       // Create a new list item for each entry
       const listItem = document.createElement("li");
 
-      // Add the phonetic pronunciation if it exists
+      // Add phonetic pronunciation if it exists
       if (entry.phonetics && entry.phonetics[0]?.text) {
         const phonetic = document.createElement("span");
         phonetic.classList.add("phonetic");
@@ -43,7 +43,7 @@ form.onsubmit = () => {
         listItem.appendChild(phonetic);
       }
 
-      // Add the origin if it exists
+      // Add origin if it exists
       if (entry.origin) {
         const origin = document.createElement("span");
         origin.classList.add("origin");
