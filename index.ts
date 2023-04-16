@@ -1,37 +1,53 @@
 const form : HTMLFormElement = document.querySelector('#defineform')!;
 
 form.onsubmit = () => {
-  const formData = new FormData(form); // form data
-  const text = formData.get('defineword') as string; // get user input
+  //Form data
+  const formData = new FormData(form);
+
+  //Get user input
+  const text = formData.get('defineword') as string;
 
   const defLists : HTMLUListElement = document.querySelector(".list-unstyled")!;
 
-  // API call 
+  //API call 
   fetch("https://api.dictionaryapi.dev/api/v2/entries/en/"+text)
 
-  // cast response to json
+  //Cast response to json
   .then((Response) => Response.json())
 
-  // get data from API and add definitions to web page
+  //Get data from API and add definitions to web page
   .then((data) => {
 
-    const heading = document.createElement("h2"); // create a new heading element
-    heading.textContent = text; // set the heading text to the input word
+    //Create new heading element
+    const heading = document.createElement("h2");
 
-    const definitionsList = document.createElement("ul"); // create a new list for the definitions
-    definitionsList.classList.add("list-unstyled"); // add the necessary class
+    //Set heading text to word being defined
+    heading.textContent = text;
+
+    //Create new list for definitions
+    const definitionsList = document.createElement("ul");
+
+    //Add necessary class
+    definitionsList.classList.add("list-unstyled");
+
+    //This is where the magic happens
     for (let i = 0; i < data[0].meanings.length; i++) {
       const meaning = data[0].meanings[i].definitions[0].definition;
       const partOfSpeech = data[0].meanings[i].partOfSpeech;
       const listItem = document.createElement("li");
       listItem.innerHTML = `<strong>${partOfSpeech}</strong>: ${meaning}`;
-      definitionsList.appendChild(listItem); // add the definition to the list
+
+      //Add definition to list
+      definitionsList.appendChild(listItem);
     }
 
-    defLists?.insertAdjacentElement("beforeend", heading); // add the heading to the page
-    defLists?.insertAdjacentElement("beforeend", definitionsList); // add the definitions to the page
+    //Add heading to page
+    defLists?.insertAdjacentElement("beforeend", heading);
+    //Add definitions to page
+    defLists?.insertAdjacentElement("beforeend", definitionsList);
 
   });
 
-  return false; // prevent reload
+  //Prevent page from reloading
+  return false;
 };
