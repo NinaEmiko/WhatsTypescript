@@ -1,26 +1,49 @@
 :root {
-    --primary-color: #1d1160; /* Charlotte Hornets purple */
-    --secondary-color: #00788c; /* Charlotte Hornets teal */
+    --primary-color: #1d1160;
+    --secondary-color: #00788c;
     --light-gray: #f3f3f3;
     --dark-gray: #333333;
     --white: #ffffff;
     --black: #000000;
   }
   
-  body {
-    background-color: var(--light-gray);
+body {
+    background-image: 
+    url('https://media.gq.com/photos/5ad93798ceb93861adb912d8/16:9/w_2560%2Cc_limit/kanye-west-0814-GQ-FEKW01.01.jpg');
+    background-repeat: repeat-y;
+    background-size: cover;
+    background-position: center;
   }
-  
+
+  .background-container {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -1;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
   .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    justify-content: space-between;
     background-color: var(--primary-color);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 80px;
-    position: relative;
+    height: 75px;
     z-index: 1;
+    opacity: .95;
   }
-
+  
   .navbar-brand {
     font-size: 28px;
     font-weight: bold;
@@ -28,7 +51,7 @@
     text-decoration: none;
     padding: 20px;
   }
-
+  
   .navbar-nav {
     display: flex;
     align-items: center;
@@ -36,22 +59,22 @@
     padding: 0;
     list-style: none;
   }
-
+  
   .nav-item {
     margin-left: 20px;
   }
-
+  
   .nav-link {
     font-size: 20px;
     color: var(--white);
     text-decoration: none;
     transition: color 0.2s ease-in-out;
   }
-
+  
   .nav-link:hover {
     color: var(--secondary-color);
   }
-
+  
   .form-control {
     font-size: 20px;
     padding: 10px;
@@ -61,7 +84,7 @@
     outline: none;
     width: 300px;
   }
-
+  
   .btn {
     font-size: 20px;
     padding: 10px 20px;
@@ -72,34 +95,36 @@
     transition: background-color 0.2s ease-in-out;
     cursor: pointer;
   }
-
+  
   .btn:hover {
     background-color: var(--dark-gray);
   }
-
+  
   .bg-light {
+    opacity: .85;
     background-color: var(--white);
     border-radius: 20px;
     padding: 50px;
     margin-top: 50px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   }
-
+  
   h1 {
     font-size: 48px;
     font-weight: bold;
     color: var(--primary-color);
     margin-bottom: 20px;
   }
-
+  
   .lead {
     font-size: 24px;
     color: var(--secondary-color);
     margin-bottom: 50px;
   }
-
+  
   ul.list-unstyled li {
     margin-bottom: 20px;
     font-size: 20px;
     color: var(--dark-gray);
+    
   }
