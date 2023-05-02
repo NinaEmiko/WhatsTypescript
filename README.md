@@ -20,3 +20,5 @@ It's different in that it is is _strongly-typed_ but at it's code it is basciall
 
 ### Bootstrap
 `https://getbootstrap.com` 
+
+![](https://github.com/NinaEmiko/WhatsTypescript/blob/main/RPReplay-Final1681658597.gif)
