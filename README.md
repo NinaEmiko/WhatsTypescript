@@ -8,14 +8,13 @@ We all find inspiration in vastly different ways. In todays world, asking questi
 
 This application was created using Typescript, Bootstrap and the DictionaryAPI.
 
-### What is Typescript?
-
-[Typescript](https://www.typescriptlang.org)
+### Typescript:
+`https://www.typescriptlang.org/`
 
 ### API:
 `https://dictionaryapi.dev`
 
-### Bootstrap
+### Bootstrap:
 `https://getbootstrap.com` 
 
 ![](https://github.com/NinaEmiko/WhatsTypescript/blob/main/RPReplay-Final1681658597.gif)
